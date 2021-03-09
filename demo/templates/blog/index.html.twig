@@ -8,16 +8,18 @@
 		{% for article in articles %}
 		<br>
 		<article>
+			<br>
 			<h2> {{ article.title }} </h2>
 			<hr>
-			<div class="metadata">Écrit le {{ article.createdAt | date('d/m/Y') }} à {{ article.createdAt | date('H:i') }} dans la catégorie Politique</div>
+			<div class="metadata">Écrit le {{ article.createdAt | date('d/m/Y') }} à {{ article.createdAt | date('H:i') }} dans la catégorie "{{ article.category.title }}"</div>
+			<br>
 			<div class="content">
 				<img src="{{ article.image }}" alt="">
 				{{ article.content | raw }}
+				<br>
 				<a href="{{ path('blog_show', {'id': article.id}) }}" class="btn btn-primary">Lire la suite</a>
 			</div>
 		<br>
 		{% endfor %}
-
 	</section>
 {% endblock %}

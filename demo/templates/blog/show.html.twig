@@ -1,15 +1,33 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-<section class="articles">
-		<article>
-			<h2> {{ article.title }} </h2>
-			<hr>
-			<div class="metadata">Écrit le {{ article.createdAt | date('d/m/Y') }} à {{ article.createdAt | date('H:i')}} dans la catégorie Politique</div>
-			<div class="content">
-				<img src="{{ article.image }}" alt="">
-				{{ article.content | raw }}
+	<article>
+		<h2> {{ article.title }} </h2>
+		<hr>
+		<div class="metadata">Écrit le {{ article.createdAt | date('d/m/Y') }} à {{ article.createdAt | date('H:i')}} dans la catégorie "{{ article.category.title }}"</div>
+		<br>
+		<div class="content">
+			<img style="width: 80vw" src="{{ article.image }}" alt="">
+			<br><br>
+			{{ article.content | raw }}
+		</div>
+	</article>
+	<hr><br>
+
+	<section id="commentaires">
+		{% for comment in article.comments %}
+		<div class="comment">
+			<div class="row">
+				<div class="col-3">
+					{{ comment.author }}
+					<small>
+						{{ comment.createdAt | date ('d/m/Y à H:i') }}
+					</small>
+				</div>
+				<div class="col">
+					{{ comment.content | raw }}
+				</div>
 			</div>
-		</article>
-		<br><br>
-</section
+		</div>
+		{% endfor %}
+	</section>
 {% endblock %}

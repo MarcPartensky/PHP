@@ -96,11 +96,11 @@
     "egulias/email-validator": {
         "version": "2.1.25"
     },
+    "fakerphp/faker": {
+        "version": "v1.13.0"
+    },
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.3"
-    },
-    "fzaninotto/faker": {
-        "version": "v1.5.0"
     },
     "laminas/laminas-code": {
         "version": "4.0.0"
