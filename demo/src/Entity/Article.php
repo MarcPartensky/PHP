@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ArticleRepository;
 
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
@@ -19,7 +20,7 @@ class Article
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Length(min=10, max=255)
+     * @Assert\Length(min=10, max=255, minMessage="Votre titre est bien court l'ami")
      */
     private $title;
 
@@ -39,6 +40,12 @@ class Article
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="articles")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
 
     public function getId(): ?int
     {
@@ -89,6 +96,18 @@ class Article
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }
